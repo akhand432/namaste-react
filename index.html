@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Namaste React Js</title>
+</head>
+
+<body>
+    <!-- Basis HTML code to show Namaste React Js in the browser by pasting the path of the html file -->
+    <div id="root">
+        <!-- <h1>Namaste React Js</h1> -->
+
+        <!-- now we will be using the javascript to show the same output in the browser -->
+    </div>
+
+    <!-- <script>
+        const heading = document.createElement("h1");
+        heading.innerHTML = "Namaste React Js";
+
+        const root = document.getElementById("root");
+        root.appendChild(heading);
+    </script> -->
+    <!-- by using this two cdn we have imported the funcationality of react in the browser when we run this file
+     and we can write whatever code in react with the help of this two cdns.
+     1. react.development.js -> This is the core of react js functionality which is written in js.
+     2. react-dom.development.js -> This is the file for handling the dom operations. -->
+    <!-- <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script> -->
+    <script>
+        // Creating of a tag in react is somewhat different than the javascript. Here we are using the React api which is core of react
+        // to create the element here createElement is a function which takes three parameters
+        // 1. The type of the element we want to create (in this case "h1")
+        // 2. The properties of the element (in this case an empty object {})
+        // here we can provide the properties of the element like class, id, style etc.
+        // If we want to add any properties to the element we can pass it as an object
+        // 3. The content of the element (in this case "Namaste React Js")
+        // This is we can also say the children of the element.
+        // This will create an element of type h1 with the content "Namaste React Js
+        // After creating the element we will append it to the root div which is present in the body of the html file.
+        // We can also use the React.createElement() function to create elements in react.
+        // const heading = React.createElement("h1", {}, "Akhand and Akancha are inseparable");
+        // again we are using the ReactDOM to create the root element which is the main entry point of the react application.
+        // const root = ReactDOM.createRoot(document.getElementById("root"));
+
+        // root.render(heading);
+        // The render method is used to render the element to the root div which is present in the body of the html file.
+        // This will replace the content of the root div with the heading element we created above.
+
+
+    </script>
+    <script src="./src/App.js" type="module"></script>
+    <!-- This script tag is used to import the App.js file which contains the react code to render the heading element.
+         This is the main entry point of the react application. -->
+</body>
+
+</html>
