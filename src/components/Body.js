@@ -1,14 +1,23 @@
 import { useState, useEffect } from "react";
-import RestarantCard from "./RestarantCard";
+import RestarantCard, { withPromotedLabel } from "./RestarantCard";
 import Shimmer from "./Shimmer";
 import restaurantList from "../utils/RestaurantList.json";
 import { Link } from "react-router";
 import { RESTAURANT_FETCH_URL } from "../utils/constant";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   const [resList, setresList] = useState([]);
   const [filteredResList, setFilteredResList] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+
+  const onlineStatus = useOnlineStatus();
+
+  const PromotedRestaurantCard = withPromotedLabel(RestarantCard);
+
+  if(!onlineStatus) {
+    return <h1>Looks like you are offline. Please check your internet connection.</h1>;
+  }
 
   useEffect(() => {
     let fetchRestaurantList = async () => {
@@ -41,28 +50,34 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="searchFilterSection">
-        <div className="search">
-          <input
+      <div className="searchFilterSection flex justify-between">
+        <div className="search p-4 m-4">
+          <input className="border border-gray-400 rounded-lg p-2"
             type="text"
             placeholder="Search for restaurants"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <button className="btn" onClick={() => filterSearch()}>
+          <button className="btn rounded-lg bg-gray-200 shadow-lg p-4 m-4" onClick={() => filterSearch()}>
             Search
           </button>
         </div>
-        <div className="filter">
-          <button className="btn" onClick={() => filterTopRatedRestaurants()}>
+        <div className="filter p-4 mx-4">
+          <button className="btn shadow-lg p-4 m-4 rounded-lg bg-gray-200" onClick={() => filterTopRatedRestaurants()}>
             Top Rated Restaurants
           </button>
         </div>
       </div>
 
-      <div className="res-container">
+      <div className="flex flex-wrap justify-center gap-4">
         {filteredResList?.map((restaurant) => (
-          <Link className="card-link" to={"restaurantMenu/:" + restaurant.info.id} key={restaurant.info.id}><RestarantCard {...restaurant.info} /></Link>
+          <Link className="card-link" to={"restaurantMenu/:" + restaurant.info.id} key={restaurant.info.id}>{
+            restaurant.info.promoted ? (
+              <PromotedRestaurantCard {...restaurant.info} />
+            ) : (
+              <RestarantCard {...restaurant.info} />
+            )
+          }</Link>
         ))}
       </div>
     </div>

@@ -11,18 +11,20 @@ const Header = () => {
     };
 
     return (
-        <div className="header">
-            <div className="logo">
-                <img src={FOOD_LOGO_URL} alt="Food_Logo" />
+        <div className="flex justify-between items-center bg-pink-50 shadow-lg">
+            <div className="w-44">
+                <img src={FOOD_LOGO_URL} alt="Food_Logo" className='rounded-lg'/>
             </div>
             <div className='navbar'>
-                <ul>
+                <ul className='flex space-x-4'>
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/about">About Us</Link></li>
                     <li><Link to="/contact">Contact</Link></li>
+                    <li><Link to="/grocery">Grocery</Link></li>
                     <li>Cart</li>
+                    <button onClick={() => handleLogin()}>{btnName}</button>
+
                 </ul>
-                <button onClick={() => handleLogin()}>{btnName}</button>
             </div>
 
         </div>
